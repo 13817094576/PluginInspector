@@ -1,0 +1,12 @@
+Notes on PluginInspector project
+---------------------------------------------------------------------------
+
+This project is built on FlowDroid.
+So projects of FlowDroid and Soot should be placed in the workspace folder.
+Dependency projects include "heros", "jasmin", "soot", "soot-infoflow",
+"soot-infoflow-android".
+More information on FlowDroid can be found at:
+https://blogs.uni-paderborn.de/sse/tools/flowdroid/
+
+The development environment of this project is JDK 1.7, Eclipse Luna.
+It may lead to compatibility issues if the environment is changed.
