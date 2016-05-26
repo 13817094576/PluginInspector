@@ -10,3 +10,6 @@ https://blogs.uni-paderborn.de/sse/tools/flowdroid/
 
 The development environment of this project is JDK 1.7, Eclipse Luna.
 It may lead to compatibility issues if the environment is changed.
+
+Soot can't handle some data structures thoroughly, such as HashMap, Array, 
+etc.

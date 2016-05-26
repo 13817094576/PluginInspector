@@ -176,41 +176,41 @@ public class Main {
 //		Rule r1=Propagation(dps1,dps2,PROP_MAY);
 //		Detect(r1);
 		
-		// EditText.getText
-		Dps dpsGetText = ArgHierarchy("android.widget.EditText.getText", 0);
-		Dps dpsText = Ret("android.widget.EditText.getText");
-		Binds(dpsGetText, dpsText);
+		// java.util.HashMap.get()
+		Dps dpsHashMapGet = ArgHierarchy("java.util.HashMap.get", 0);
+		Dps dpsHashMapGetResult = Ret("java.util.HashMap.get");
+		Binds(dpsHashMapGet, dpsHashMapGetResult);
 		
 		// HTTP communication
 		Dps dpsHttpPost = Arg("org.apache.http.client.methods.HttpPost.<init>", 1);
-		Rule ruleHttpPost = Propagation(dpsText, dpsHttpPost, PROP_MAY);
+		Rule ruleHttpPost = Propagation(dpsHashMapGetResult, dpsHttpPost, PROP_MAY);
 		
 		Dps dpsHttpGet = Arg("org.apache.http.client.methods.HttpGet.<init>", 1);
-		Rule ruleHttpGet = Propagation(dpsText, dpsHttpGet, PROP_MAY);
+		Rule ruleHttpGet = Propagation(dpsHashMapGetResult, dpsHttpGet, PROP_MAY);
 		
 		Dps dpsHttpPut = Arg("org.apache.http.client.methods.HttpPut.<init>", 1);
-		Rule ruleHttpPut = Propagation(dpsText, dpsHttpPut, PROP_MAY);
+		Rule ruleHttpPut = Propagation(dpsHashMapGetResult, dpsHttpPut, PROP_MAY);
 		
 		Dps dpsOutputStream = ArgHierarchy("java.io.OutputStream.write", 1);
-		Rule ruleOutputStream = Propagation(dpsText, dpsOutputStream, PROP_MAY);
+		Rule ruleOutputStream = Propagation(dpsHashMapGetResult, dpsOutputStream, PROP_MAY);
 		
 		Dps dpsOutputStreamWriter = ArgHierarchy("java.io.OutputStreamWriter.write", 1);
-		Rule ruleOutputStreamWriter = Propagation(dpsText, dpsOutputStreamWriter, PROP_MAY);
+		Rule ruleOutputStreamWriter = Propagation(dpsHashMapGetResult, dpsOutputStreamWriter, PROP_MAY);
 		
 		Dps dpsBufferedWriter = ArgHierarchy("java.io.BufferedWriter.write", 1);
-		Rule ruleBufferedWriter = Propagation(dpsText, dpsBufferedWriter, PROP_MAY);
+		Rule ruleBufferedWriter = Propagation(dpsHashMapGetResult, dpsBufferedWriter, PROP_MAY);
 		
 		Dps dpsUrl = Arg("java.net.URL.<init>", 1);
-		Rule ruleUrl = Propagation(dpsText, dpsUrl, PROP_MAY);
+		Rule ruleUrl = Propagation(dpsHashMapGetResult, dpsUrl, PROP_MAY);
 		
 		Dps dpsUri = Arg("java.net.URI.<init>", 1);
-		Rule ruleUri = Propagation(dpsText, dpsUri, PROP_MAY);
+		Rule ruleUri = Propagation(dpsHashMapGetResult, dpsUri, PROP_MAY);
 		
 		Dps dpsCredentialsArg1 = Arg("org.apache.http.auth.UsernamePasswordCredentials.<init>", 1);
-		Rule ruleCredentialsArg1 = Propagation(dpsText, dpsCredentialsArg1, PROP_MAY);
+		Rule ruleCredentialsArg1 = Propagation(dpsHashMapGetResult, dpsCredentialsArg1, PROP_MAY);
 		
 		Dps dpsCredentialsArg2 = Arg("org.apache.http.auth.UsernamePasswordCredentials.<init>", 2);
-		Rule ruleCredentialsArg2 = Propagation(dpsText, dpsCredentialsArg2, PROP_MAY);
+		Rule ruleCredentialsArg2 = Propagation(dpsHashMapGetResult, dpsCredentialsArg2, PROP_MAY);
 		
 		Rule[] rules = { ruleHttpPost, ruleHttpGet, ruleHttpPut, 
 						 ruleOutputStream, ruleOutputStreamWriter, ruleBufferedWriter,
@@ -332,6 +332,10 @@ public class Main {
 		r2.setNum(RULE_NUM);
 	}
 //binds
+	
+	//
+	// Bind method flags that the two specified data points
+	// correspond to the same statement
 	public static void Binds(Object v1,Object v2){
 		new Binds(v1,v2);
 	}
